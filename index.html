@@ -19,6 +19,11 @@
         <button class="btn btn-primary" onclick="toggle3('Ben', 'whats up')">Alert</button>
         <button class="btn btn-primary" onclick="toggle3('Ben')">Alert</button>
     </div>
+
+    <div class="container">
+        <h1>String Methods</h1>
+        <p>There are different string methods.</p>
+    </div>
 </body>
 <script>
     // Function with parameters
@@ -30,9 +35,45 @@
     function toggle2(name, message){
         alert(name + message)
     }
-    // Default Value
+    // With Default Value
     function toggle3(name='No name', message='No message'){
         alert(name + message)
     }
+</script>
+<script>
+    let str='Benjamin'
+    console.log(str.length);
+
+    console.log(str.includes('i')); //case sensitive
+    console.log(str.includes('in'));
+
+    console.log(str.indexOf('B'));
+    console.log(str.indexOf('Be'));
+    console.log(str.indexOf('n'));
+
+    console.log(str.lastIndexOf('n')); //last occurrence
+    console.log(str.charAt(4));
+
+    console.log(str.repeat(4));
+
+    console.log(str.replace('min', 'men'));
+
+    console.log(str.split());
+    console.log(str.split(''));
+
+    let srt='Benjamin is a software engineer'
+    console.log(srt.split(' '));
+    srt='Benjamin, is, a, software, engineer'
+    console.log(srt.split(','));
+
+    console.log(srt.toLowerCase());
+    console.log(srt.toUpperCase());
+
+    console.log(srt.slice(0,3));
+    console.log(srt.slice(17,25));
+
+    console.log(srt.substring(5,3));
+
+    console.log(srt.substr(5,3));
 </script>
 </html>
