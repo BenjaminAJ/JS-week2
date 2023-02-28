@@ -1,28 +1,29 @@
-function clearScreen() {
-    document.getElementById("output").innerText = "0";
-}
+let output=document.getElementById("output")
 
-if (document.getElementById("output").innerText == "") {
-    document.getElementById("output").innerText = "0";
+function clearScreen() {
+    output.innerText = "0";
+}
+if (output.innerText == "") {
+    output.innerText = "0";
 }
 function outputValue(value) {
-    if (document.getElementById("output").innerText != "0") {
-        document.getElementById("output").innerText += value;
+    if (output.innerText != "0") {
+        output.innerText += value;
     } else {
-        document.getElementById("output").innerText = value;
+        output.innerText = value;
     }
 }
 function square() {
-    let userinput = document.getElementById("output").innerText;
+    let userinput = output.innerText;
 
     userinput = Number(userinput) ** 2;
-    document.getElementById("output").innerText = userinput;
+    output.innerText = userinput;
 }
 function squareRoot() {
-    let userinput = document.getElementById("output").innerText;
+    let userinput = output.innerText;
 
     userinput = Number(userinput) ** 0.5;
-    document.getElementById("output").innerText = userinput;
+    output.innerText = userinput;
 
 }
-console.log("" == "");
+// console.log("" == "");
