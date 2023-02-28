@@ -3,3 +3,28 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    #calculator{
+        max-width: 400px;
+        max-height: 800px;
+        .container{
+            .output{
+                text-align: right;
+            }
+            .row{
+                .buttonWrapper{
+                    width: 100%;
+                }
+                .buttonWrapper > *{
+                    flex: 1;
+                }
+            }
+            .row{
+                margin-bottom: 2px;
+            }
+        }
+    }
+}
