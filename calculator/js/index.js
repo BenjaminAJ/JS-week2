@@ -1,17 +1,39 @@
 const output=document.getElementById("output")
+const equation=document.getElementById("equation")
+let outputvalue=''
 
 function clearScreen() {
     output.innerText = "0";
+    equation.innerText='';
 }
 if (output.innerText == "") {
     output.innerText = "0";
 }
 function outputValue(value) {
-    if (output.innerText != "0") {
+    if (output.innerText != "0" && equation.innerText == '') {
         output.innerText += value;
-    } else {
+    }
+    else if(output.innerText != '0' ){
+        output.innerText += value;
+    } 
+    else {
         output.innerText = value;
     }
+}
+let operator = ''
+function outputOperator(operatorValue){
+    operator = operatorValue
+    outputvalue= output.innerText
+    if (equation.innerText == ''){
+        equation.innerText+=outputvalue + operator
+    }
+    else if (equation.innerText.charAt(equation.innerText.length-1) == operator){
+        equation.innerText+=outputvalue
+    }
+    else if (equation.innerText.charAt(equation.innerText.length-1) != operator){
+        equation.innerText+=operator
+    }
+    // console.log(operator);
 }
 function square() {
     let userinput = output.innerText;
@@ -33,6 +55,51 @@ function changeContent(element){
     }
     else if (element == 'memory'){
         pTag.innerText="There's nothing saved in memory"
+    }
+}
+
+function solve(){
+    let equArray = equation.innerText.split(operator)
+    outputvalue = output.innerText
+    if (operator=='+' && equation.innerText.charAt(equation.innerText.length-1) != operator){
+        output.innerText= Number(equArray[0]) + Number(equArray[1])
+    }
+    else if(equation.innerText.charAt(equation.innerText.length-1) == operator && operator == '+'){
+        // console.log('test');
+        equation.innerText+=outputvalue
+        output.innerText = Number(equArray[0])  + Number(output.innerText)
+    }
+    else if (operator=='-' && equation.innerText.charAt(equation.innerText.length-1) != operator){
+        output.innerText= Number(equArray[0]) - Number(equArray[1])
+    }
+    else if(equation.innerText.charAt(equation.innerText.length-1) == operator && operator == '-'){
+        // console.log('test');
+        equation.innerText+=outputvalue
+        // console.log(outputvalue);
+        output.innerText = Number(equArray[0]) - Number(output.innerText) 
+    }
+    else if (operator=='*' && equation.innerText.charAt(equation.innerText.length-1) != operator){
+        output.innerText= Number(equArray[0]) * Number(equArray[1])
+    }
+    else if(equation.innerText.charAt(equation.innerText.length-1) == operator && operator == '*'){
+        // console.log('test');
+        equation.innerText+=outputvalue
+        // console.log(outputvalue);
+        output.innerText = Number(equArray[0]) * Number(output.innerText) 
+    }
+    else if (operator=='/' && equation.innerText.charAt(equation.innerText.length-1) != operator){
+        output.innerText= Number(equArray[0]) / Number(equArray[1])
+    }
+    else if(equation.innerText.charAt(equation.innerText.length-1) == operator && operator == '/'){
+        equation.innerText+=outputvalue
+        output.innerText = Number(equArray[0]) / Number(output.innerText) 
+    }
+    else if (operator=='%' && equation.innerText.charAt(equation.innerText.length-1) != operator){
+        output.innerText= Number(equArray[0]) % Number(equArray[1])
+    }
+    else if(equation.innerText.charAt(equation.innerText.length-1) == operator && operator == '%'){
+        equation.innerText+=outputvalue
+        output.innerText = Number(equArray[0]) % Number(output.innerText) 
     }
 }
 // console.log("" == "");
