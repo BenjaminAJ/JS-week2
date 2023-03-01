@@ -8,22 +8,63 @@ body{
     align-items: center;
     justify-content: center;
     #calculator{
-        max-width: 400px;
-        max-height: 800px;
-        .container{
+        // max-width: 400px;
+        max-height: 1000px;
+        /* From https://css.glass */
+        background: rgba(0, 0, 0, 0.87);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(0.9px);
+        -webkit-backdrop-filter: blur(0.9px);
+        border: 1px solid rgba(0, 0, 0, 0.3);  
+     .container{
+            .leftWrapper{
+                .row{
+                    .buttonWrapper{
+                        width: 100%;
+                    }
+                    .buttonWrapper > *{
+                        flex: 1;
+                    }
+                }
+                .row{
+                    margin-bottom: 2px;
+                }
+                }
             .output{
                 text-align: right;
+                font-size: 50px;
             }
-            .row{
-                .buttonWrapper{
-                    width: 100%;
+            .rightWrapper{
+                width: 250px;
+                .navbar{
+                    .container-fluid{
+                        a{
+                            position: relative;
+                            cursor: pointer;
+                            transition: color ease  .5s;
+                        }
+                        a::after{
+                            content: '';
+                            position: absolute;
+                            top: 100%;
+                            left: 0;
+                            height: 3px;
+                            width: 100%;
+                            transform: scaleX(0) !important;
+                            transform-origin: center;
+                            transition: transform .5s;
+                        }
+                        a:hover{
+                            color: #424649 !important;
+                        }
+                        a:hover a::after{
+                            color: #424649 !important;
+                            transform: scaleX(1) !important;
+                        }
+                    }
                 }
-                .buttonWrapper > *{
-                    flex: 1;
-                }
-            }
-            .row{
-                margin-bottom: 2px;
+
             }
         }
     }

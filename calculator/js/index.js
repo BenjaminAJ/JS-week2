@@ -1,4 +1,4 @@
-let output=document.getElementById("output")
+const output=document.getElementById("output")
 
 function clearScreen() {
     output.innerText = "0";
@@ -25,5 +25,14 @@ function squareRoot() {
     userinput = Number(userinput) ** 0.5;
     output.innerText = userinput;
 
+}
+const   pTag =  document.getElementById('p')
+function changeContent(element){
+    if (element == 'history'){
+        pTag.innerText="There's no history yet"
+    }
+    else if (element == 'memory'){
+        pTag.innerText="There's nothing saved in memory"
+    }
 }
 // console.log("" == "");

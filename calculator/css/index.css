@@ -17,20 +17,61 @@ body {
           justify-content: center;
 }
 body #calculator {
-  max-width: 400px;
-  max-height: 800px;
+  max-height: 1000px;
+  /* From https://css.glass */
+  background: rgba(0, 0, 0, 0.87);
+  border-radius: 16px;
+  -webkit-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(0.9px);
+  -webkit-backdrop-filter: blur(0.9px);
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
-body #calculator .container .output {
-  text-align: right;
-}
-body #calculator .container .row .buttonWrapper {
+body #calculator .container .leftWrapper .row .buttonWrapper {
   width: 100%;
 }
-body #calculator .container .row .buttonWrapper > * {
+body #calculator .container .leftWrapper .row .buttonWrapper > * {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
 }
-body #calculator .container .row {
+body #calculator .container .leftWrapper .row {
   margin-bottom: 2px;
+}
+body #calculator .container .output {
+  text-align: right;
+  font-size: 50px;
+}
+body #calculator .container .rightWrapper {
+  width: 250px;
+}
+body #calculator .container .rightWrapper .navbar .container-fluid a {
+  position: relative;
+  cursor: pointer;
+  -webkit-transition: color ease 0.5s;
+  transition: color ease 0.5s;
+}
+body #calculator .container .rightWrapper .navbar .container-fluid a::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  -webkit-transform: scaleX(0) !important;
+          transform: scaleX(0) !important;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+}
+body #calculator .container .rightWrapper .navbar .container-fluid a:hover {
+  color: #424649 !important;
+}
+body #calculator .container .rightWrapper .navbar .container-fluid a:hover a::after {
+  color: #424649 !important;
+  -webkit-transform: scaleX(1) !important;
+          transform: scaleX(1) !important;
 }

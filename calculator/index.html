@@ -14,9 +14,9 @@
 </head>
 
 <body>
-  <section id="calculator" class="mx-auto bg-secondary bg-gradient text-white">
-    <div class="container">
-      <div class="row">
+  <section id="calculator" class="mx-auto text-white">
+    <div class="container d-flex gap-4">
+      <div class="leftWrapper">
         <nav class="navbar text-white">
           <div class="container-fluid">
             <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
@@ -37,9 +37,9 @@
             <button class="btn btn-dark" onclick="outputValue('M+')">
               M+
             </button>  
-            <div class="btn btn-dark" onclick="outputValue('M-')">
+            <button class="btn btn-dark" onclick="outputValue('M-')">
               M-
-            </div>  
+            </button>  
             <div class="btn btn-dark" onclick="outputValue('MS')">
               MS
             </div>  
@@ -48,18 +48,18 @@
         </div>
         <div class="row">
           <div class="buttonWrapper d-flex gap-1">
-            <div class="btn btn-dark" onclick="outputValue('%')">%</div>
-            <div class="btn btn-dark" onclick="clearScreen()">CE</div>
-            <div class="btn btn-dark" onclick="clearScreen()">C</div>
-            <div class="btn btn-dark">-</div>
+            <div class="btn btn-secondary" onclick="outputValue('%')">%</div>
+            <div class="btn btn-secondary" onclick="clearScreen()">CE</div>
+            <div class="btn btn-secondary" onclick="clearScreen()">C</div>
+            <div class="btn btn-secondary">-</div>
           </div>
         </div>
         <div class="row">
           <div class="buttonWrapper d-flex gap-1">
-            <div class="btn btn-dark" onclick="outputValue('1/x')">1/x</div>
-            <div class="btn btn-dark" onclick="square()">x <sup>2</sup></div>
-            <div class="btn btn-dark" onclick="squareRoot()">x <sup>1/2</sup></div>
-            <div class="btn btn-dark">/</div>
+            <div class="btn btn-secondary" onclick="outputValue('1/x')">1/x</div>
+            <div class="btn btn-secondary" onclick="square()">x <sup>2</sup></div>
+            <div class="btn btn-secondary" onclick="squareRoot()">x <sup>1/2</sup></div>
+            <div class="btn btn-secondary">/</div>
           </div>
         </div>
         <div class="row">
@@ -67,7 +67,7 @@
             <div class="btn btn-dark" onclick="outputValue('7')">7</div>
             <div class="btn btn-dark" onclick="outputValue('8')">8</div>
             <div class="btn btn-dark" onclick="outputValue('9')">9</div>
-            <div class="btn btn-dark" onclick="outputValue('*')">*</div>
+            <div class="btn btn-secondary" onclick="outputValue('*')">*</div>
           </div>
         </div>
         <div class="row">
@@ -75,7 +75,7 @@
             <div class="btn btn-dark" onclick="outputValue('4')">4</div>
             <div class="btn btn-dark" onclick="outputValue('5')">5</div>
             <div class="btn btn-dark" onclick="outputValue('6')">6</div>
-            <div class="btn btn-dark" onclick="outputValue('-')">-</div>
+            <div class="btn btn-secondary" onclick="outputValue('-')">-</div>
           </div>
         </div>
         <div class="row">
@@ -83,7 +83,7 @@
             <div class="btn btn-dark" onclick="outputValue('1')">1</div>
             <div class="btn btn-dark" onclick="outputValue('2')">2</div>
             <div class="btn btn-dark" onclick="outputValue('3')">3</div>
-            <div class="btn btn-dark" onclick="outputValue('+')">+</div>
+            <div class="btn btn-secondary" onclick="outputValue('+')">+</div>
           </div>
         </div>
         <div class="row">
@@ -95,9 +95,22 @@
             </div>
             <div class="btn btn-dark" onclick="outputValue('0')">0</div>
             <div class="btn btn-dark" onclick="outputValue('.')">.</div>
-            <div class="btn btn-dark" onclick="outputValue('=')">=</div>
+            <div class="btn btn-secondary" onclick="outputValue('=')">=</div>
           </div>
         </div>
+      </div>
+      <div class="rightWrapper">
+        <nav class="navbar text-white">
+          <div class="container-fluid justify-content-start" style="padding-left: 0;">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+            </svg> -->
+            <a class="navbar-brand text-white" onclick="changeContent('history')">History</a>
+            <a class="navbar-brand text-white" onclick="changeContent('memory')">Memory</a>
+          </div>
+        </nav>
+        <p id="p">There's no history yet</p>
+
       </div>
     </div>
   </section>
