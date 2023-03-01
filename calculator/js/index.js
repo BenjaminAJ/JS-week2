@@ -25,7 +25,13 @@ function outputOperator(operatorValue){
     operator = operatorValue
     outputvalue= output.innerText
     if (equation.innerText == ''){
-        equation.innerText+=outputvalue + operator
+        if (operator == '1/x'){
+            outputvalue='1/'
+            equation.innerText+=outputvalue 
+        }
+        else{
+            equation.innerText+=outputvalue + operator
+        }
     }
     else if (equation.innerText.charAt(equation.innerText.length-1) == operator){
         equation.innerText+=outputvalue
@@ -33,6 +39,7 @@ function outputOperator(operatorValue){
     else if (equation.innerText.charAt(equation.innerText.length-1) != operator){
         equation.innerText+=operator
     }
+    output.innerText='0'
     // console.log(operator);
 }
 function square() {
@@ -101,5 +108,14 @@ function solve(){
         equation.innerText+=outputvalue
         output.innerText = Number(equArray[0]) % Number(output.innerText) 
     }
+    else if (operator=='1/x' && equation.innerText != '1/'){
+        output.innerText= Number(equArray[0]) / Number(equArray[1])
+        console.log('Hey');
+    }
+    else if(equation.innerText == '1/' && operator == '1/x'){
+        equation.innerText+=outputvalue
+        // console.log(equArray);
+        output.innerText = 1 / Number(output.innerText) 
+        // console.log('Hey2');
+    }
 }
-// console.log("" == "");
