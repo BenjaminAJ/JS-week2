@@ -22,6 +22,7 @@ function outputValue(value) {
 }
 let operator = ''
 function outputOperator(operatorValue){
+    let equArray = equation.innerText.split(operator)
     operator = operatorValue
     outputvalue= output.innerText
     if (equation.innerText == ''){
@@ -31,15 +32,23 @@ function outputOperator(operatorValue){
         }
         else{
             equation.innerText+=outputvalue + operator
+            output.innerText='0'
         }
     }
     else if (equation.innerText.charAt(equation.innerText.length-1) == operator){
         equation.innerText+=outputvalue
+        solve()
+        // console.log('Hey');
+
     }
-    else if (equation.innerText.charAt(equation.innerText.length-1) != operator){
+    else if (equation.innerText.charAt(equation.innerText.length-1) != operator && equArray.length == 2){
+        // console.log('Hey');
+        // console.log(equation.innerText);
+        equation.innerText=output.innerText
         equation.innerText+=operator
+        output.innerText='0'
     }
-    output.innerText='0'
+    // output.innerText='0'
     // console.log(operator);
 }
 function square() {
@@ -65,6 +74,7 @@ function changeContent(element){
     }
 }
 
+
 function solve(){
     let equArray = equation.innerText.split(operator)
     outputvalue = output.innerText
@@ -87,6 +97,8 @@ function solve(){
     }
     else if (operator=='*' && equation.innerText.charAt(equation.innerText.length-1) != operator){
         output.innerText= Number(equArray[0]) * Number(equArray[1])
+        // console.log('Hey');
+
     }
     else if(equation.innerText.charAt(equation.innerText.length-1) == operator && operator == '*'){
         // console.log('test');
@@ -110,7 +122,7 @@ function solve(){
     }
     else if (operator=='1/x' && equation.innerText != '1/'){
         output.innerText= Number(equArray[0]) / Number(equArray[1])
-        console.log('Hey');
+        // console.log('Hey');
     }
     else if(equation.innerText == '1/' && operator == '1/x'){
         equation.innerText+=outputvalue

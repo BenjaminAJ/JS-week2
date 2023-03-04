@@ -41,6 +41,7 @@ body #calculator .container .leftWrapper .row {
 body #calculator .container .output {
   text-align: right;
   font-size: 50px;
+  height: 75px;
 }
 body #calculator .container .rightWrapper {
   width: 250px;
