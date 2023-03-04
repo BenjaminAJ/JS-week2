@@ -107,7 +107,7 @@ function solve(){
         output.innerText = Number(equArray[0]) * Number(output.innerText) 
     }
     else if (operator=='/' && equation.innerText.charAt(equation.innerText.length-1) != operator){
-        output.innerText= Number(equArray[0]) / Number(equArray[1])
+        output.innerText= (Number(equArray[0]) / Number(equArray[1])).toFixed(2)
     }
     else if(equation.innerText.charAt(equation.innerText.length-1) == operator && operator == '/'){
         equation.innerText+=outputvalue
@@ -121,7 +121,7 @@ function solve(){
         output.innerText = Number(equArray[0]) % Number(output.innerText) 
     }
     else if (operator=='1/x' && equation.innerText != '1/'){
-        output.innerText= Number(equArray[0]) / Number(equArray[1])
+        output.innerText= (Number(equArray[0]) / Number(equArray[1])).toFixed(2)
         // console.log('Hey');
     }
     else if(equation.innerText == '1/' && operator == '1/x'){
