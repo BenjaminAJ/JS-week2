@@ -6,6 +6,9 @@ function clearScreen() {
     output.innerText = "0";
     equation.innerText='';
 }
+function clearOutput() {
+    output.innerText = "0";
+}
 if (output.innerText == "") {
     output.innerText = "0";
 }
@@ -53,15 +56,22 @@ function outputOperator(operatorValue){
 }
 function square() {
     let userinput = output.innerText;
-
+    equation.innerText= userinput
     userinput = Number(userinput) ** 2;
     output.innerText = userinput;
 }
 function squareRoot() {
     let userinput = output.innerText;
-
+    equation.innerText= userinput
     userinput = Number(userinput) ** 0.5;
-    output.innerText = userinput;
+
+    if (+userinput % 1 != 0){
+        output.innerText = (+userinput).toFixed(2);
+    }
+    else{
+        output.innerText = userinput;
+    }
+
 
 }
 const   pTag =  document.getElementById('p')
@@ -131,3 +141,14 @@ function solve(){
         // console.log('Hey2');
     }
 }
+function deleteItem() {
+    let outputarray = output.innerText
+    outputarray = outputarray.slice(0, -1)
+    if(outputarray == ''){
+        output.innerText='0'
+    }
+    else{
+        output.innerText=outputarray
+    }
+}
+
