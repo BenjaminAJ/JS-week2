@@ -93,12 +93,23 @@ function outputOperator(operatorValue) {
             output.innerText = '0';
         }
     }
+    else if (equation.innerText.charAt(equation.innerText.length - 1) == operator && output.innerText == '0') {
+        equation.innerText = equation.innerText.slice(0, -1); // remove the last character from the equation array
+        equation.innerText += operatorValue;
+        // console.log('Hey');
+
+    }
     else if (equation.innerText.charAt(equation.innerText.length - 1) == operator) {
         equation.innerText += outputvalue;
         solve();
         // console.log('Hey');
 
     }
+     else if (equation.innerText.charAt(equation.innerText.length -1) != '=' && equation.innerText.charAt(equation.length -1) == operator && equation.innerText.includes("+") || equation.innerText.includes("-") || equation.innerText.includes("*") || equation.innerText.includes("/")) {
+        // if there is already an operator displayed, replace it with the new operator
+        equation.innerText = equation.innerText.replace(/([-+*/=%√])/, operatorValue);
+        // equation.innerText = equation.innerText.slice(0, -1) + operatorValue;
+      }
     //New addition
     else if (evaluateExpression(equation.innerText) != output.innerText && equArray.length >= 2) {
         // console.log(equArray);
@@ -115,26 +126,71 @@ function outputOperator(operatorValue) {
         equation.innerText += operator;
         output.innerText = '0';
     }
+    else {
+        // otherwise, append the new operator to the output element
+        output.innerText += operator;
+    }
     // output.innerText='0'
     // console.log(operator);
 }
 function square() {
     let userinput = output.innerText;
-    equation.innerText = 'sqr' + '(' + userinput +')';
-    userinput = Number(userinput) ** 2;
-    output.innerText = userinput;
+    let lastChar = equation.innerText.charAt(equation.innerText.length - 1); // get the last character of the equation
+
+    // equation.innerText = 'sqr' + '(' + userinput +')';
+    // userinput = Number(userinput) ** 2;
+    // output.innerText = userinput;
+    if (lastChar != operator) {
+        equation.innerText = 'sqr' + '(' + userinput +')';
+        output.innerText = Number(userinput) ** 2;
+        // console.log('Hey');
+
+    }
+    else if (lastChar == operator) {
+        // console.log('test');
+        equation.innerText +=  'sqr' + '(' + userinput +')' ;
+        // console.log(operator);
+        output.innerText = Number(userinput) ** 2;
+    }
 }
 function squareRoot() {
     let userinput = output.innerText;
-    equation.innerText = '√' + '(' + userinput +')';
-    userinput = Number(userinput) ** 0.5;
+    let lastChar = equation.innerText.charAt(equation.innerText.length - 1); // get the last character of the equation
 
-    if (+userinput % 1 != 0) {
-        output.innerText = (+userinput).toFixed(2);
+    // equation.innerText = '√' + '(' + userinput +')';
+
+
+    // if (+userinput % 1 != 0) {
+    //     output.innerText = (+userinput).toFixed(2);
+    // }
+    // else {
+    //     output.innerText = userinput;
+    // }
+    if (lastChar != operator) {
+        equation.innerText = '√' + '(' + userinput +')';
+        userinput = Number(userinput) ** 0.5;
+        if (+userinput % 1 != 0) {
+            output.innerText = (+userinput).toFixed(2);
+        }
+        else {
+            output.innerText = userinput;
+        }
+            // console.log('Hey');
+
     }
-    else {
-        output.innerText = userinput;
-    }
+    else if (lastChar == operator) {
+        // console.log('test');
+        equation.innerText +=  '√' + '(' + userinput +')' ;
+        userinput = Number(userinput) ** 0.5;
+        // console.log(operator);
+        if (+userinput % 1 != 0) {
+            output.innerText = (+userinput).toFixed(2);
+        }
+        else {
+            output.innerText = userinput;
+        }
+        }
+
 
 
 }
@@ -150,13 +206,14 @@ function changeContent(element) {
 
 // evaluate the equation and display the result in the output
 function solve() {
-    let equArray = equation.innerText.split(operator).filter((operator) => operator !== ''); // split the equation into an array of characters
+    let equArray = equation.innerText.split(/([-+*/=%√])/).filter((x) => x !== '' &&  x !== '=' &&  x !== '+' &&  x !== '-' &&  x !== '*' &&  x !== '/' &&  x !== '%'  &&  x !== '√' && x !== '(' && x !== ')'); // split the equation into an array of characters
     // let equArray = equation.innerText.split(operator); // split the equation into an array of characters
     let lastChar = equation.innerText.charAt(equation.innerText.length - 1); // get the last character of the equation
     // let lastChar = equArray[equArray.length - 1]; // get the last character of the equation
     outputvalue = output.innerText;
     if (operator == '+' && lastChar != operator) {
         console.log(equArray);
+        // equation.innerText += '='
         output.innerText = Number(equArray[0]) + Number(equArray[1]);
     }
     else if (lastChar == operator && operator == '+') {
@@ -165,15 +222,18 @@ function solve() {
         output.innerText = Number(equArray[0]) + Number(output.innerText);
     }
     else if (operator == '-' && lastChar != operator) {
+        // equation.innerText += '='
+        // console.log('test');
         output.innerText = Number(equArray[0]) - Number(equArray[1]);
     }
     else if (lastChar == operator && operator == '-') {
         // console.log('test');
         equation.innerText += outputvalue + '=' ;
-        // console.log(outputvalue);
+        console.log(equArray);
         output.innerText = Number(equArray[0]) - Number(output.innerText);
     }
     else if (operator == '*' && lastChar != operator) {
+        // equation.innerText += '='
         output.innerText = Number(equArray[0]) * Number(equArray[1]);
         // console.log('Hey');
 
@@ -185,6 +245,7 @@ function solve() {
         output.innerText = Number(equArray[0]) * Number(output.innerText);
     }
     else if (operator == '/' && lastChar != operator) {
+        // equation.innerText += '='
         if ((Number(equArray[0]) / Number(equArray[1])) % 1 != 0) {
             output.innerText = (Number(equArray[0]) / Number(equArray[1])).toFixed(2);
         }
@@ -204,10 +265,12 @@ function solve() {
 
     }
     else if (operator == '%' && equation.innerText.charAt(equation.innerText.length - 1) != operator) {
+        // equation.innerText += '='
         output.innerText = Number(equArray[0]) % Number(equArray[1]);
     }
     else if (equation.innerText.charAt(equation.innerText.length - 1) == operator && operator == '%') {
         equation.innerText += outputvalue  + '=' ;
+        console.log(equArray);
         output.innerText = Number(equArray[0]) % Number(output.innerText);
     }
     else if (operator == '1/x' && equation.innerText != '1/') {
